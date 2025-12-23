@@ -213,11 +213,18 @@ export class InvoiceList implements OnInit {
   }
 
   saveEdit() {
-    if (!this.editingInvoice) return;
-    this.editingInvoice.balanceAmount = 
-    (this.editingInvoice.totalAmount || 0) - (this.editingInvoice.receivedAmount || 0);
-
-    this.invoiceService.updateInvoice(this.editingInvoice._id, this.editingInvoice).then(() => {
+    if (!this.editingInvoice) return;// Calculate balance before saving
+    const totalAmount = Number(this.editingInvoice.totalAmount) || 0;
+    const receivedAmount = Number(this.editingInvoice.receivedAmount) || 0;
+    const balanceAmount = totalAmount - receivedAmount;
+    
+    // Update the object
+    this.editingInvoice.totalAmount = totalAmount;
+    this.editingInvoice.receivedAmount = receivedAmount;
+    this.editingInvoice.balanceAmount = balanceAmount;
+    
+    console.log('💾 Sending to backend:', this.editingInvoice);
+    this.invoiceService.updateInvoice(this.editingInvoice._id, this.editingInvoice ).then(() => {
       this.alertService.success('Invoice updated successfully');
       this.editingInvoice = null;
       this.loadInvoices();

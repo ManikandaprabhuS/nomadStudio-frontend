@@ -71,6 +71,11 @@
             <span class="amount-cell" [style.color]="inv.balanceAmount > 0 ? 'var(--accent-amber)' : 'inherit'">
               ₹ {{ inv.balanceAmount | number }}
             </span>
+             <span class="amount-cell" 
+        *ngIf="editingInvoice?._id === inv._id"
+        [style.color]="(editingInvoice.totalAmount - editingInvoice.receivedAmount) > 0 ? 'var(--accent-amber)' : 'inherit'">
+    ₹ {{ (editingInvoice.totalAmount - editingInvoice.receivedAmount) | number }}
+  </span>
           </td>
 
           <td data-label="Date">
