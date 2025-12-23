@@ -1,0 +1,110 @@
+<div class="clients-container">
+    <div class="header-section">
+        <h2 class="page-title">Client Details</h2>
+
+        <div class="header-actions">
+            <div class="search-box">
+                <input class="client-search" type="text" placeholder="Search by name or phone..."
+                    [(ngModel)]="searchTerm" (ngModelChange)="applyFilter()" />
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="loading" class="loading-state">
+        <div class="spinner"></div>
+        <p>Fetching client data...</p>
+    </div>
+
+    <div class="table-container" *ngIf="!loading && filteredClients.length > 0">
+        <table class="client-table">
+            <thead>
+                <tr>
+                    <th>Client Content</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of paginatedClients" class="client-row">
+                    <!-- Name -->
+                    <td data-label="Name">
+                        <div class="client-info" *ngIf="editingClient?._id !== client._id">
+                            <span class="client-name">{{ client.userName }}</span>
+                        </div>
+                        <input class="edit-input" *ngIf="editingClient?._id === client._id"
+                            [(ngModel)]="editingClient.userName" placeholder="Client Name" />
+                    </td>
+
+                    <!-- Phone -->
+                    <td data-label="Phone">
+                        <span class="phone-cell" *ngIf="editingClient?._id !== client._id">{{ client.phoneNumber
+                            }}</span>
+                        <input class="edit-input" *ngIf="editingClient?._id === client._id"
+                            [(ngModel)]="editingClient.phoneNumber" placeholder="Phone Number" />
+                    </td>
+
+                    <!-- Email -->
+                    <td data-label="Email">
+                        <span class="email-cell" *ngIf="editingClient?._id !== client._id">{{ client.emailId }}</span>
+                        <input class="edit-input" *ngIf="editingClient?._id === client._id"
+                            [(ngModel)]="editingClient.emailId" placeholder="Email Address" />
+                    </td>
+
+                    <!-- Address -->
+                    <td data-label="Address">
+                        <span class="address-cell" *ngIf="editingClient?._id !== client._id">{{ client.address }}</span>
+                        <input class="edit-input" *ngIf="editingClient?._id === client._id"
+                            [(ngModel)]="editingClient.address" placeholder="Address" />
+                    </td>
+
+                    <!-- Actions -->
+                    <td class="text-right">
+                        <div class="action-buttons">
+                            <!-- View/Edit -->
+                            <button class="btn-action" title="Edit Client" *ngIf="editingClient?._id !== client._id"
+                                (click)="editClient(client)">
+                                ✏️
+                            </button>
+
+                            <!-- Save / Cancel (Editing) -->
+                            <button class="btn-action success" title="Save Changes"
+                                *ngIf="editingClient?._id === client._id" (click)="saveEdit()">
+                                ✅
+                            </button>
+                            <button class="btn-action danger" title="Cancel" *ngIf="editingClient?._id === client._id"
+                                (click)="cancelEdit()">
+                                ❌
+                            </button>
+
+                            <!-- Delete -->
+                            <button class="btn-action danger" title="Delete Client"
+                                *ngIf="editingClient?._id !== client._id" (click)="deleteClient(client._id)">
+                                🗑️
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination-container" *ngIf="totalPages > 1">
+        <button class="btn-pagination" (click)="prevPage()" [disabled]="currentPage === 1">
+            Previous
+        </button>
+        <span class="page-info">
+            Page {{ currentPage }} of {{ totalPages }}
+        </span>
+        <button class="btn-pagination" (click)="nextPage()" [disabled]="currentPage === totalPages">
+            Next
+        </button>
+    </div>
+
+    <div *ngIf="!loading && filteredClients.length === 0" class="no-results">
+        <div class="empty-icon">📂</div>
+        <p>No clients found matching your search.</p>
+    </div>
+</div>

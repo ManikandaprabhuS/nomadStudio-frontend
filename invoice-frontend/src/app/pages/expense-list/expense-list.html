@@ -1,0 +1,59 @@
+<div class="expense-container">
+  <div class="header-section">
+    <h2 class="page-title">Expense Summary</h2>
+
+    <div class="header-actions">
+      <div class="search-box">
+        <input class="expense-search" type="text" placeholder="Search by amount or reason..." [(ngModel)]="searchTerm"
+          (ngModelChange)="applyFilter()" />
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Fetching expense data...</p>
+  </div>
+
+  <div class="table-container" *ngIf="!loading && filteredExpenses.length > 0">
+    <table class="expense-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Reason</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expense of filteredExpenses; let i = index" class="expense-row">
+          <td data-label="ID">
+            <span class="id-badge">{{ i + 1 }}</span>
+          </td>
+          <td data-label="Reason">
+            <span class="reason-text">{{ expense.reason }}</span>
+          </td>
+          <td data-label="Amount">
+            <span class="amount-text">₹ {{ expense.amount }}</span>
+          </td>
+          <td data-label="Date">
+            <span class="date-text">{{ expense.createdAt | date:'dd MMM yyyy' }}</span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-action danger" title="Delete Expense" (click)="deleteExpense(expense._id)">
+                🗑️
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!loading && filteredExpenses.length === 0" class="no-results">
+    <div class="empty-icon">💸</div>
+    <p>No expenses found matching your search.</p>
+  </div>
+</div>
