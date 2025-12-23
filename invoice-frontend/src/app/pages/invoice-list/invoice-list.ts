@@ -38,7 +38,9 @@ export class InvoiceList implements OnInit {
 
   loadInvoices() {
     this.invoiceService.getInvoices().then((res: any[]) => {
-      this.invoices = res.map(inv => ({ ...inv, selected: false }));
+      this.invoices = res.map(inv => ({ ...inv, selected: false,
+        balanceAmount:(inv.paidAmount || 0) - (inv.totalAmount || 0)
+       }));
       this.filteredInvoices = [...this.invoices];
       this.calculatePagination();
     });
@@ -212,6 +214,8 @@ export class InvoiceList implements OnInit {
 
   saveEdit() {
     if (!this.editingInvoice) return;
+    this.editingInvoice.balanceAmount = 
+    (this.editingInvoice.totalAmount || 0) - (this.editingInvoice.receivedAmount || 0);
 
     this.invoiceService.updateInvoice(this.editingInvoice._id, this.editingInvoice).then(() => {
       this.alertService.success('Invoice updated successfully');
