@@ -39,7 +39,7 @@ export class InvoiceList implements OnInit {
   loadInvoices() {
     this.invoiceService.getInvoices().then((res: any[]) => {
       this.invoices = res.map(inv => ({ ...inv, selected: false,
-        balanceAmount:(inv.paidAmount || 0) - (inv.totalAmount || 0)
+        balanceAmount:(inv.totalAmount || 0) - (inv.receivedAmount || 0)
        }));
       this.filteredInvoices = [...this.invoices];
       this.calculatePagination();
