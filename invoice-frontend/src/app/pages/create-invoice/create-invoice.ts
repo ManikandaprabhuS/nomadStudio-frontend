@@ -31,9 +31,9 @@ export class CreateInvoice {
     balanceAmount: 0,
     generalNotes: '',
     ownerDetails: {
-      companyName: 'Nomad Studio Pvt Ltd',
-      ownerName: 'Suriya',
-      phoneNumber: '+91 1234567890',
+      companyName: 'Nomad Studio ',
+      ownerName: 'Sri Suriya',
+      phoneNumber: '+91 7598204583',
       address: 'Dharapuram Road, Oddanchatram-624619, Tamil Nadu',
     }
   };
