@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class Client {
 
-  private apiUrl = 'http://localhost:5000/api/users';
+  private apiUrl = 'https://nomadstudio-backend.onrender.com/api/users';
   private platformId = inject(PLATFORM_ID);
 
   constructor(private http: HttpClient) { }

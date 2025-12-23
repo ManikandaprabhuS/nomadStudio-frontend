@@ -6,7 +6,7 @@ import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 })
 export class Invoice {
 
-  private apiUrl = 'http://localhost:5000/api/invoices';
+  private apiUrl = 'https://nomadstudio-backend.onrender.comapi/invoices';
   private platformId = inject(PLATFORM_ID);
 
   updateInvoice(id: string, updatedData: any) {
