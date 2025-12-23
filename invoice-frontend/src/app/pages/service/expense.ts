@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class Expense {
 
-  private baseUrl='https://nomadstudio-backend.onrender.com/api/expenses';
+  private baseUrl='https://nomadstudio-backend-vefx.onrender.com/api/expenses';
   private platformId = inject(PLATFORM_ID);
   
   private getToken(): string | null {

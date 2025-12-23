@@ -24,7 +24,7 @@ export class Login {
       return;
     }
     console.log('Logging in with', this.userName, this.password);
-    this.http.post<any>('https://nomadstudio-backend.onrender.com/auth/login', {
+    this.http.post<any>('https://nomadstudio-backend-vefx.onrender.com/auth/login', {
       userName: this.userName,
       password: this.password
 
