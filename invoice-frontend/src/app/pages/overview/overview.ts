@@ -424,8 +424,8 @@ export class Overview implements OnInit {
     balanceAmount: 0,
     ownerDetails: {                              // ✅ Added owner details
       companyName: "Nomad Studio Pvt Ltd",
-      ownerName: "Suriya",
-      phoneNumber: "+91 1234567890",
+      ownerName: "Sri Suriya",
+      phoneNumber: "+91 7598204583",
       address: "Dharapuram Road, Oddanchatram-624619, Tamil Nadu"
     }
   };
