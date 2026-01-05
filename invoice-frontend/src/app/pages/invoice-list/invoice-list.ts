@@ -187,7 +187,8 @@ export class InvoiceList implements OnInit {
         itemsStr,
         inv.totalAmount,
         inv.receivedAmount,
-        inv.balanceAmount
+        inv.balanceAmount,
+        inv.notes || '',
       ];
     });
 
@@ -222,6 +223,7 @@ export class InvoiceList implements OnInit {
     this.editingInvoice.totalAmount = totalAmount;
     this.editingInvoice.receivedAmount = receivedAmount;
     this.editingInvoice.balanceAmount = balanceAmount;
+    this.editingInvoice.notes = this.editingInvoice.notes || '';
     
     console.log('💾 Sending to backend:', this.editingInvoice);
     this.invoiceService.updateInvoice(this.editingInvoice._id, this.editingInvoice ).then(() => {
