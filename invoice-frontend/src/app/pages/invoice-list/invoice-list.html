@@ -30,6 +30,7 @@
           <th>Total Amount</th>
           <th>Recived Amount</th>
           <th>Balance Amount</th>
+          <th>Notes</th>
           <th>Date</th>
           <th style="text-align: right;">Actions</th>
         </tr>
@@ -76,6 +77,10 @@
         [style.color]="(editingInvoice.totalAmount - editingInvoice.receivedAmount) > 0 ? 'var(--accent-amber)' : 'inherit'">
     ₹ {{ (editingInvoice.totalAmount - editingInvoice.receivedAmount) | number }}
   </span>
+          </td>
+          <td data-label="Notes">
+            <span class="notes-cell" *ngIf="editingInvoice?._id !== inv._id">{{ inv.notes }}</span>
+            <input class="edit-input" *ngIf="editingInvoice?._id === inv._id" [(ngModel)]="editingInvoice.notes" />
           </td>
 
           <td data-label="Date">
