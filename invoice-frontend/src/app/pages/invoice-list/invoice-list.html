@@ -78,10 +78,13 @@
     ₹ {{ (editingInvoice.totalAmount - editingInvoice.receivedAmount) | number }}
   </span>
           </td>
-          <td data-label="Notes">
-            <span class="notes-cell" *ngIf="editingInvoice?._id !== inv._id">{{ inv.notes }}</span>
-            <input class="edit-input" *ngIf="editingInvoice?._id === inv._id" [(ngModel)]="editingInvoice.notes" />
-          </td>
+         <td data-label="Notes">
+          <ul class="notes-list">
+            <li *ngFor="let s of inv.services">
+              {{ s.serviceType }}: {{ s.notes || '-' }} 
+            </li>
+          </ul>
+         </td>
 
           <td data-label="Date">
             <span class="date-cell">{{ inv.createdAt | date:'dd MMM yyyy' }}</span>

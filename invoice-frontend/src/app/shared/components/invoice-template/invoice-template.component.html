@@ -58,6 +58,7 @@
                 <tr *ngFor="let item of displayServices; let i = index">
                     <td class="col-num">{{ item.isEmpty ? '&nbsp;' : i + 1 }}</td>
                     <td class="col-desc">{{ item.serviceType || '&nbsp;' }}</td>
+                    <td class="col-desc">{{ item.notes || '&nbsp;' }}</td>
                     <!-- Schema doesn't have HSN, keeping empty column as per visual requirement -->
                     <td class="col-hsn">&nbsp;</td>
                     <td class="col-qty">{{ item.quantity || '&nbsp;' }}</td>
