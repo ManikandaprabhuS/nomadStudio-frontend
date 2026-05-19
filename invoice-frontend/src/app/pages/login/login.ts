@@ -50,7 +50,7 @@ export class Login {
       alert('Please enter your email address');
       return;
     }
-    this.http.post<any>('http://localhost:5000/auth/forgot-password', {
+    this.http.post<any>('https://nomadstudio-backend.onrender.com/auth/forgot-password', {
       emailId: this.emailId
     }).subscribe({
       next: (res) => {
@@ -68,7 +68,7 @@ export class Login {
       alert('Please fill in all fields');
       return;
     }
-    this.http.post<any>('http://localhost:5000/auth/reset-password', {
+    this.http.post<any>('https://nomadstudio-backend.onrender.com/auth/reset-password', {
       emailId: this.emailId,
       otp: this.otp,
       newPassword: this.newPassword
