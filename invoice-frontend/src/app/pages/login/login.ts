@@ -29,7 +29,7 @@ export class Login {
     }
     console.log("Logged IN Service Called")
     //console.log('Logging in with', this.userName, this.password);
-    this.http.post<any>('https://nomadstudio-backend.onrender.com/auth/login', {
+    this.http.post<any>('https://nomadstudio-backend-ct47.onrender.com/auth/login', {
       userName: this.userName,
       password: this.password
 
@@ -50,7 +50,7 @@ export class Login {
       alert('Please enter your email address');
       return;
     }
-    this.http.post<any>('https://nomadstudio-backend.onrender.com/auth/forgot-password', {
+    this.http.post<any>('https://nomadstudio-backend-ct47.onrender.com/auth/forgot-password', {
       emailId: this.emailId
     }).subscribe({
       next: (res) => {
@@ -68,7 +68,7 @@ export class Login {
       alert('Please fill in all fields');
       return;
     }
-    this.http.post<any>('https://nomadstudio-backend.onrender.com/auth/reset-password', {
+    this.http.post<any>('https://nomadstudio-backend-ct47.onrender.com/auth/reset-password', {
       emailId: this.emailId,
       otp: this.otp,
       newPassword: this.newPassword
